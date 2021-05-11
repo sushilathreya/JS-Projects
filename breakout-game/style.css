@@ -70,3 +70,76 @@ canvas {
 .rules.show {
     transform: translateX(0);
 }
+
+.new-game {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 750px;
+    height: 300px;
+    background-color: #2F3E46;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    text-align: center;
+    z-index: 2;
+    border-radius: 5px;
+    color: white;
+}
+
+.new-game h3 {
+    font-size: 24px;
+}
+
+
+.settings {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 750px;
+    height: 300px;
+    background-color: #2F3E46;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    text-align: center;
+    z-index: 2;
+    border-radius: 5px;
+    color: white;
+}
+
+.bttn {
+    font-size: 20px;
+    background-color: #0095dd;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 20px;
+    width: 50%;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+}
+
+.settings-btn {
+    margin-bottom: 50px;
+}
+
+.bttn:hover {
+    transform: scale(1.10);
+}
+
+.diff {
+    position: absolute;
+    bottom: 5px;
+    left: 30px;
+}
+
+.high-score {
+    position: absolute;
+    bottom: 5px;
+    right: 30px;
+}

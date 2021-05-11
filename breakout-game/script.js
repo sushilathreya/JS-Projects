@@ -1,6 +1,15 @@
 const rulesBtn = document.getElementById('rules-btn');
 const rulesEl = document.getElementById('rules');
 const closeBtn = document.getElementById('close-btn');
+const startBtn = document.getElementById('start-btn');
+const newGameEl = document.getElementById('new-game');
+const settingsBtn = document.getElementById('settings-btn');
+const settingsEl = document.getElementById('settings');
+const easy = document.getElementById('easy');
+const medium = document.getElementById('medium');
+const hard = document.getElementById('hard');
+const difficultyEl = document.getElementById('diff');
+const highScoreEl = document.getElementById('high-score');
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
 
@@ -9,14 +18,16 @@ let score = 0;
 const brickRowCount = 9;
 const brickColCount = 5;
 
+
+
 // Create ball props
 const ball = {
     x: canvas.width/2,
     y: canvas.height/2,
     size: 10,
-    speed: 2,
-    dx: 2,
-    dy: -2
+    speed: 1,
+    dx: 1,
+    dy: -1
 };
 
 // Create paddle props
@@ -72,7 +83,7 @@ function drawPaddle() {
 // Draw score on canvas
 function drawScore() {
     ctx.font = '20px Verdana';
-    ctx.fillText(`Score: ${score}`, canvas.width - 100, 30);
+    ctx.fillText(`Score: ${score}`, canvas.width - 100, 40);
 }
 
 
@@ -143,6 +154,10 @@ function moveBall() {
 
     // Hit Bottom Wall - Lose
     if(ball.y + ball.size > canvas.height) {
+        
+        if(score>getHighScore(score, ball.speed)) {
+            setHighScore(score, ball.speed);
+        }
         showAllBricks();
         score=0;
     }
@@ -166,6 +181,66 @@ function showAllBricks () {
     });
 }
 
+// Change ball speed based on selected difficulty
+function updateDifficulty(num) {
+    setDifficulty(+num);
+    ball.speed = +num;
+    ball.dx = +num;
+    ball.dy = +num*-1;
+    paddle.speed = +num+3;
+    newGameEl.style.display = 'flex';
+    settingsEl.style.display = 'none';
+    highScoreEl.innerText = `HighScore: ${getHighScore(0, num)}`;
+
+    if(num==1) {
+       difficultyEl.innerText = 'Difficulty: Easy';
+       easy.style.backgroundColor = '#84A98C';
+       medium.style.backgroundColor = '#0095dd';
+       hard.style.backgroundColor = '#0095dd';
+    } else if (num==2) {
+        difficultyEl.innerText = 'Difficulty: Medium';
+        medium.style.backgroundColor = '#84A98C';
+        easy.style.backgroundColor = '#0095dd';
+        hard.style.backgroundColor = '#0095dd';
+        
+    } else {
+        difficultyEl.innerText = 'Difficulty: Hard';
+        hard.style.backgroundColor = '#84A98C';
+        easy.style.backgroundColor = '#0095dd';
+        medium.style.backgroundColor = '#0095dd';
+        
+    }
+}
+
+function setDifficulty(diff) {
+    localStorage.setItem('difficulty', diff);
+}
+
+// Set High score for each difficulty in local storage
+function setHighScore(score, difficulty) {
+    if(+difficulty==1){
+        localStorage.setItem("HighscoreEasy", score);
+    } else if (+difficulty==2) {
+        localStorage.setItem("HighscoreMed", score);
+    } else {
+        localStorage.setItem("HighscoreHard", score);
+    }
+    
+}
+
+// Get high scores from local storage
+function getHighScore(score, difficulty) {
+    let highScore;
+    if(+difficulty==1){
+        highScore = JSON.parse(localStorage.getItem("HighscoreEasy"));
+    } else if (+difficulty==2) {
+        highScore = JSON.parse(localStorage.getItem("HighscoreMed"))
+    } else {
+        highScore = JSON.parse(localStorage.getItem("HighscoreHard"))
+    }
+    return highScore;
+}
+
 // Draw everything
 function draw() {
     // Clear canvas
@@ -187,7 +262,7 @@ function update() {
     requestAnimationFrame(update);
 }
 
-update();
+// update();
 
 // Keydown event function
 function keyDown(e) {
@@ -211,3 +286,27 @@ document.addEventListener('keyup', keyUp);
 // Event Listeners
 rulesBtn.addEventListener('click', () => rules.classList.add('show'));
 closeBtn.addEventListener('click', () => rules.classList.remove('show'));
+startBtn.addEventListener('click', () => {
+    newGameEl.style.display = 'none';
+    update();
+});
+settingsBtn.addEventListener('click', () => {
+    newGameEl.style.display = 'none';
+    settingsEl.style.display = 'flex';
+})
+
+easy.addEventListener('click', () => {
+    updateDifficulty(1);
+});
+
+medium.addEventListener('click', () => {
+    updateDifficulty(2)
+});
+
+hard.addEventListener('click', () => {
+    updateDifficulty(4)
+});
+
+updateDifficulty(localStorage.getItem('difficulty'));
+
+// Current Difficulty BG Color - #84A98C
