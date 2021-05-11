@@ -84,6 +84,7 @@ function drawPaddle() {
 function drawScore() {
     ctx.font = '20px Verdana';
     ctx.fillText(`Score: ${score}`, canvas.width - 100, 40);
+    ctx.fillText(`High Score: ${getHighScore(score, localStorage.getItem('difficulty'))}`, 20, 40);
 }
 
 
