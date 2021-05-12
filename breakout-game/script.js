@@ -92,7 +92,7 @@ function drawPaddle() {
 // Draw score on canvas
 function drawScore() {
     ctx.font = '20px Verdana';
-    ctx.fillText(`Score: ${score}`, canvas.width - 100, 40);
+    ctx.fillText(`Score: ${score}`, canvas.width - 120, 40);
     ctx.fillText(`High Score: ${getHighScore(score, localStorage.getItem('difficulty'))}`, 20, 40);
     ctx.fillText(`Lives Remaining: ${lives < 0 ? 0: lives}`, canvas.width/2- 80, 40);
 }
@@ -173,8 +173,7 @@ function moveBall() {
         if(lives<0) {
             endGame();
         }
-        showAllBricks();
-        score=0;
+        
     }
 }
 
@@ -294,6 +293,7 @@ function endGame() {
 
 function resetGame() {
     score = 0;
+    showAllBricks();
     lives = 3;
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ball.x = canvas.width/2;
