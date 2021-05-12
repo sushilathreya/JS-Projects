@@ -10,10 +10,19 @@ const medium = document.getElementById('medium');
 const hard = document.getElementById('hard');
 const difficultyEl = document.getElementById('diff');
 const highScoreEl = document.getElementById('high-score');
+const endGameEl = document.getElementById('end-game');
+const endGameScore = document.getElementById('end-s');
+const endGameHs = document.getElementById('end-hs');
+const newGameBtn = document.getElementById('new-game-btn');
+const endSettingsBtn = document.getElementById('end-settings-btn');
+
+
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
 
 let score = 0;
+let lives = 3;
+let endcheck = 0;
 
 const brickRowCount = 9;
 const brickColCount = 5;
@@ -85,6 +94,7 @@ function drawScore() {
     ctx.font = '20px Verdana';
     ctx.fillText(`Score: ${score}`, canvas.width - 100, 40);
     ctx.fillText(`High Score: ${getHighScore(score, localStorage.getItem('difficulty'))}`, 20, 40);
+    ctx.fillText(`Lives Remaining: ${lives < 0 ? 0: lives}`, canvas.width/2- 80, 40);
 }
 
 
@@ -158,6 +168,10 @@ function moveBall() {
         
         if(score>getHighScore(score, ball.speed)) {
             setHighScore(score, ball.speed);
+        }
+        lives--;
+        if(lives<0) {
+            endGame();
         }
         showAllBricks();
         score=0;
@@ -254,16 +268,39 @@ function draw() {
 
 // Update canvas drawing and animation
 function update() {
-    movePaddle();
-    moveBall();
+   if(endcheck!=1) {
+        movePaddle();
+        moveBall();
 
-    // Draw everything
-    draw();
-
-    requestAnimationFrame(update);
+        // Draw everything
+        draw();
+        requestAnimationFrame(update);
+   }
+    
 }
 
 // update();
+
+
+// End game function
+function endGame() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    endcheck = 1;
+    endGameEl.style.display = 'flex';
+    endGameScore.innerText = `${score}`;
+    endGameHs.innerText = getHighScore(score, localStorage.getItem('difficulty'));
+}
+
+
+function resetGame() {
+    score = 0;
+    lives = 3;
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ball.x = canvas.width/2;
+    ball.y = canvas.height/2;
+    update();
+}
+
 
 // Keydown event function
 function keyDown(e) {
@@ -291,8 +328,20 @@ startBtn.addEventListener('click', () => {
     newGameEl.style.display = 'none';
     update();
 });
+
+newGameBtn.addEventListener('click', () => {
+    endcheck = 0;
+    endGameEl.style.display = 'none';
+    resetGame();
+})
+
 settingsBtn.addEventListener('click', () => {
     newGameEl.style.display = 'none';
+    settingsEl.style.display = 'flex';
+})
+
+endSettingsBtn.addEventListener('click', () => {
+    endGameEl.style.display = 'none';
     settingsEl.style.display = 'flex';
 })
 

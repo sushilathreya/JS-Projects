@@ -112,6 +112,36 @@ canvas {
     color: white;
 }
 
+.end-game {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 750px;
+    height: 300px;
+    background-color: #2F3E46;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    text-align: center;
+    z-index: 2;
+    border-radius: 5px;
+    color: white;
+}
+
+.end-game p {
+    margin: 0;
+}
+
+.end-game span {
+    font-size: 18px;
+    font-weight: 600;
+    color: #0095dd;
+    margin-left: 5px;
+    margin-bottom: 0;
+}
+
 .bttn {
     font-size: 20px;
     background-color: #0095dd;
@@ -124,11 +154,27 @@ canvas {
     transition: transform 0.2s ease-in-out;
 }
 
+
+.new-game-btn, .end-settings-btn {
+    font-size: 20px;
+    background-color: #0095dd;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 20px;
+    width: 50%;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+}
 .settings-btn {
     margin-bottom: 50px;
 }
 
 .bttn:hover {
+    transform: scale(1.10);
+}
+
+.new-game-btn:hover, .end-settings-btn:hover {
     transform: scale(1.10);
 }
 
