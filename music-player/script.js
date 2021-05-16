@@ -9,7 +9,7 @@ const title = document.getElementById('title');
 const cover = document.getElementById('cover');
 
 // Song Titles
-const songs = ['Feeling Good', 'Ocean', 'Woo Back Baby'];
+const songs = ['Feeling Good', 'DNET', 'Dowdowdow', 'Half Past Two', 'Lowkey'];
 
 // Keep trak of song
 let songIndex = 0;
