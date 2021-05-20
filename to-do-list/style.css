@@ -101,6 +101,11 @@ li .li-div p {
     color: #3993DD;
     font-size: 18px;
     cursor: pointer;
+    transition: color 0.2s ease-in-out;
+}
+
+.delete-btn:hover {
+    color: #db3a1d;
 }
 
 .li-div.checked p {

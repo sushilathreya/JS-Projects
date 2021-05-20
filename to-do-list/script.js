@@ -37,7 +37,7 @@ function getNotes() {
 }
 
 function populateDOM () {
-    i = items.length;
+   let i = items.length;
     while(i--) {
         let noteItem = document.createElement('li');
         value = items[i];
@@ -62,11 +62,11 @@ function populateDOM () {
 // Search on user input
 function search() {
     let listItems = document.getElementsByTagName('li');
-    for(let i = 0; i<listItems.length;i++) {
-        if(listItems[i].innerText.includes(searchBar.value)){
-            listItems[i].style.display = '';
+    for(let j = 0; j<listItems.length;j++) {
+        if(listItems[j].innerText.toLowerCase().includes(searchBar.value.toLowerCase())){
+            listItems[j].style.display = '';
         } else {
-            listItems[i].style.display = 'none';
+            listItems[j].style.display = 'none';
         }
         
     }
