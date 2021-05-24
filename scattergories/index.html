@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Scattergories</title>
+</head>
+<body>
+    <div class="left" id="left">
+        <div class="letter-container left-box" id="letter-container">
+            <p class="letter-tag" id="letter-tag">Letter</p>
+            <span class="letter" id="letter">S</span>
+            <button class="random-letter" id="random-letter">
+                <i class="fas fa-random"></i>
+            </button>
+        </div>
+        <div class="time-container left-box" id="time-container">
+            <p class="time-tag" id="time-tag">Time</p>
+            <span class="time" id="time">30</span>
+            <button class="edit-time" id="edit-time">
+                <i class="fas fa-edit"></i>
+            </button>
+        </div>
+    </div>
+
+    <div class="middle" id="middle">
+        <div class="category-container" id="category-container">
+            <div class="header" id="header">
+                <span class="cat-display" id="cat-display">Categories</span>
+                <span class="add-categories" id="add-categories">Add a category</span>
+                <div class="cat-number" id="cat-number">
+                    <button class="minus" id="minus">
+                        <i class="fas fa-minus"></i>
+                    </button>
+                    <span class="number" id="number">5</span>
+                    <button class="plus" id="plus">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="categories" id="categories">
+                <div class="word-wrap" id="word-wrap">
+                    <span class="serial-no" id="serial-no">1</span>
+                    <span class="category paused" id="category">Beers</span>
+                </div>
+                <div class="word-wrap" id="word-wrap">
+                    <span class="serial-no" id="serial-no">2</span>
+                    <span class="category paused" id="category">Cartoon characters</span>
+                </div>
+                <div class="word-wrap" id="word-wrap">
+                    <span class="serial-no" id="serial-no">3</span>
+                    <span class="category paused" id="category">Superhero movies</span>
+                </div>
+                <div class="word-wrap" id="word-wrap">
+                    <span class="serial-no" id="serial-no">4</span>
+                    <span class="category paused" id="category">Beers</span>
+                </div>
+                <div class="word-wrap" id="word-wrap">
+                    <span class="serial-no" id="serial-no">5</span>
+                    <span class="category paused" id="category">Professional Sports Teams</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="right" id="right">
+        <div class="play-container" id="play-container">
+            <button class="play" id="play">
+                <i class="fas fa-play"></i>
+            </button>
+        </div>
+        <div class="restart-container" id="restart-container">
+            <button class="restart" id="restart">
+                <i class="fas fa-redo"></i>
+            </button>
+        </div>
+    </div>
+
+
+    <script src="script.js"></script>
+</body>
+</html>
