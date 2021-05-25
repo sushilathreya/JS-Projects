@@ -12,6 +12,8 @@ const editTimeEl = document.getElementById('time-container');
 const timeInput = document.getElementById('timeInput');
 const updateTimeBtn = document.getElementById('updateTime');
 
+timeInput.value = '30';
+
 let categoryNumber = +noOfCategories.innerText;
 
 let categoryList = [
@@ -89,7 +91,7 @@ function pauseTimer() {
 
 function restartGame() {
     categoryEl.innerHTML = '';
-    seconds = timeInput.value=='0'? 30: +timeInput.value;
+    seconds = timeInput.value == '0'? 30 : +timeInput.value;
     time.innerText = seconds;
     playBtn.className = 'play pause';
     pauseTimer();
