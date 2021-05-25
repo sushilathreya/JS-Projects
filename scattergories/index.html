@@ -20,6 +20,11 @@
         <div class="time-container left-box" id="time-container">
             <p class="time-tag" id="time-tag">Time</p>
             <span class="time" id="time">30</span>
+            <div class="editContainer" id="editContainer">
+                <input type="number" class="timeInput" id="timeInput">
+                <button class="updateTime" id="updateTime">Update</button>
+            </div>
+            
             <button class="edit-time" id="edit-time">
                 <i class="fas fa-edit"></i>
             </button>
@@ -43,33 +48,13 @@
             </div>
 
             <div class="categories" id="categories">
-                <div class="word-wrap" id="word-wrap">
-                    <span class="serial-no" id="serial-no">1</span>
-                    <span class="category paused" id="category">Beers</span>
-                </div>
-                <div class="word-wrap" id="word-wrap">
-                    <span class="serial-no" id="serial-no">2</span>
-                    <span class="category paused" id="category">Cartoon characters</span>
-                </div>
-                <div class="word-wrap" id="word-wrap">
-                    <span class="serial-no" id="serial-no">3</span>
-                    <span class="category paused" id="category">Superhero movies</span>
-                </div>
-                <div class="word-wrap" id="word-wrap">
-                    <span class="serial-no" id="serial-no">4</span>
-                    <span class="category paused" id="category">Beers</span>
-                </div>
-                <div class="word-wrap" id="word-wrap">
-                    <span class="serial-no" id="serial-no">5</span>
-                    <span class="category paused" id="category">Professional Sports Teams</span>
-                </div>
             </div>
         </div>
     </div>
 
     <div class="right" id="right">
         <div class="play-container" id="play-container">
-            <button class="play" id="play">
+            <button class="play pause" id="play">
                 <i class="fas fa-play"></i>
             </button>
         </div>
