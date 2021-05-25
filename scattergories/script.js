@@ -15,7 +15,7 @@ const updateTimeBtn = document.getElementById('updateTime');
 let categoryNumber = +noOfCategories.innerText;
 
 let categoryList = [
-    "Beers", "Boy's Name", "Girl's Name", "Dog Breed", "Pro Sports Team", "Cartoon characters", "Video game characters", "Move name", "Things you sit on/in", "Items of clothing", "Footwear", "Cryptocurrency", "Words related to money", "Names of candy", "Desserts", "Food items", "Offensive word", "Tech companies", "Apps", "Entrepreneurs", "Cars", "Vehicles", "Animals", "Insects", "Mammals", "Vegetables", "Fruits", "Drinks", "Restaurants", "YouTubers"
+    "Beers", "Boy's Name", "Girl's Name", "Dog Breed", "Pro Sports Team", "Cartoon characters", "Video game characters", "Move name", "Things you sit on/in", "Items of clothing", "Footwear", "Cryptocurrency", "Words related to money", "Names of candy", "Desserts", "Dishes", "Offensive word", "Tech companies", "Apps", "Entrepreneurs", "Cars", "Vehicles", "Animals", "Insects", "Mammals", "Vegetables", "Fruits", "Drinks", "Restaurant Names", "YouTubers"
 ];
 
 const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";

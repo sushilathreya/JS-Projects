@@ -11,7 +11,9 @@ body {
     display: flex;
     flex-direction: row;
     margin: 0;
-    padding: 20px;
+    padding: 110px 100px 70px 100px;
+    background-color: #E8F1F2;
+    color: #ff0099;
 }
 
 .left {
@@ -22,7 +24,7 @@ body {
     position: relative;
     width: 100%;
     height: 50%;
-    border: 2px solid black;
+    border: 2px solid #ff0099;
 }
 
 .letter-tag {
@@ -68,7 +70,7 @@ body {
     font-size: 18px;
     background: transparent;
     border: none;
-    color: #a7a4a4;
+    color: #ff0099;
     transition: color 0.2s ease-in-out;
     cursor: pointer;
 }
@@ -98,25 +100,28 @@ body {
     font-size: 150px;
     width: 60%;
     text-align: center;
-    border: 1px solid #cecece;
+    border: 1px solid #ff0099;
+    background-color: #EDF1F2;
+    color: #ff0099;
     font-family: 'Varela Round', sans-serif;
     font-weight: 600;
 }
 
 .updateTime {
     border: none;
-    background-color: #f1eded;
+    background-color: #ff0099;
+    font-family: 'Varela Round', sans-serif;
     font-size: 16px;
     width: 60%;
     margin-top: 10px;
     padding: 5px 10px;
-    transition: all 0.2s ease-out;
+    transition: transform 0.2s ease-out;
+    color: white;
 }
 
 
 .updateTime:hover {
-    background-color: rgb(34, 34, 34);
-    color: white;
+    transform: scale(1.05);
 }
 
 /* Chrome, Safari, Edge, Opera */
@@ -138,7 +143,7 @@ input[type=number] {
     font-size: 18px;
     background: transparent;
     border: none;
-    color: #a7a4a4;
+    color: #ff0099;
     transition: color 0.2s ease-in-out;
     cursor: pointer;
 }
@@ -154,7 +159,7 @@ input[type=number] {
 .category-container {
     display: flex;
     flex-direction: column;
-    border: 2px solid black;
+    border: 2px solid #ff0099;
     border-left: none;
     height: 100%;
     font-size: 18px;
@@ -166,13 +171,13 @@ input[type=number] {
     flex-direction: row;
     justify-content: space-between;
     padding: 10px 15px;
-    border-bottom: 2px solid black;
+    border-bottom: 2px solid #ff0099;
 }
 
 .minus, .plus {
     cursor: pointer;
     background: transparent;
-    color: rgba(0, 0, 0, 0.4    );
+    color: #ff0099;
     border: none;
     font-size: 12px;
     transition: color 0.2s ease-in-out;
@@ -191,7 +196,7 @@ input[type=number] {
 }
 
 .play-container, .restart-container {
-    border: 2px solid black;
+    border: 2px solid #ff0099;
     border-left: none;
     position: relative;
     height: 50%;
@@ -211,6 +216,7 @@ input[type=number] {
     transform: translate(-50%, -50%);
     transition: font-size 0.2s ease-in;
     cursor: pointer;
+    color: #ff0099;
 }
 
 .play:hover, .restart:hover {
@@ -220,13 +226,13 @@ input[type=number] {
 .word-wrap {
     font-size: 25px;
     padding: 10px 15px;
-    border: 1px solid #cecece;
+    border-bottom: 1px solid #ff0099;
 }
 
 .category {
     margin: 0 10px;
     background-color: none;
-    background: linear-gradient(to left, white 50%, black 50%) right;
+    background: linear-gradient(to left, #E8F1F2 50%,#ff0099 50%) right;
     background-size: 200%;
     transition: .3s ease-out;
 }
@@ -243,4 +249,11 @@ input[type=number] {
 .categories {
     height: 100%;
     overflow: auto;
+}
+
+img {
+    position: absolute;
+    width: 100px;
+    top: 15px;
+    left: 50px;
 }
