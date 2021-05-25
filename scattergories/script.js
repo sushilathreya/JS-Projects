@@ -112,6 +112,8 @@ plusBtn.addEventListener('click', () => {
     if(categoryNumber<15) {
         categoryNumber++;
         noOfCategories.innerText = categoryNumber;
+        categoryEl.innerHTML = '';
+        createList();
     }
     
 });
@@ -120,6 +122,8 @@ minusBtn.addEventListener('click', () => {
     if(categoryNumber>2) {
         categoryNumber--;
         noOfCategories.innerText = categoryNumber;
+        categoryEl.innerHTML = '';
+        createList();
     }
     
 });
