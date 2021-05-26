@@ -292,7 +292,7 @@ img {
     background-color: #E8F1F2;
 }
 
-.add-category:focus {
+.add-category:focus, .edit-time:focus, .random-letter:focus, .minus:focus, .plus:focus, .delete-btn:focus {
     outline: 0;
 }
 
@@ -323,6 +323,19 @@ img {
     color: #ff0099;
 }
 
+.delete-btn {
+    border: none;
+    background: transparent;
+    color: black;
+    transition: color 0.2s ease-in;
+    cursor: pointer;
+}
+
+.delete-btn:hover {
+    color: #ff0099;
+}
+
+/* Media Queries */
 @media(max-width: 1322px) {
     .letter {
         font-size: 200px;

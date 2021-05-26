@@ -58,7 +58,7 @@ startGame();
 function getCategories() {
     const categoryItems = JSON.parse(localStorage.getItem('categoryItems'));
     return categoryItems === null ? [
-        "Beers", "Boy's names", "Girl's names", "Dog breeds", "Pro sports teams", "Cartoon characters", "Video game characters", "Movie name", "Things you sit on/in", "Items of clothing", "Footwear", "Cryptocurrency", "Words related to money", "Names of candy", "Desserts", "Dishes", "Offensive words", "Tech companies", "Apps", "Entrepreneurs", "Cars", "Vehicles", "Animals", "Insects", "Mammals", "Vegetables", "Fruits", "Drinks", "Restaurant Names", "YouTubers"
+        "Beers", "Boy's names", "Girl's names", "Dog breeds", "Pro sports teams", "Cartoon characters", "Video game characters", "Movie names", "Things you sit on/in", "Items of clothing", "Footwear", "Cryptocurrency", "Words related to money", "Names of candy", "Desserts", "Dishes", "Offensive words", "Tech companies", "Apps", "Entrepreneurs", "Cars", "Vehicles", "Animals", "Insects", "Mammals", "Vegetables", "Fruits", "Drinks", "Restaurant Names", "YouTubers"
     ] : categoryItems;
 }
 
@@ -126,7 +126,7 @@ function showCategoryList() {
         listItem.innerHTML = `
             <span>${categoryList[j]}</span>
             <button id = "delete-btn" class = "delete-btn" onclick = "removeItem(this.parentElement, 'categoryList[j]')">
-                <i class = "fas fa-trash-alt"></i>
+                <i class = "fas fa-trash"></i>
             </button>
         `;
 
@@ -145,11 +145,18 @@ function removeItem(item, value) {
 
 
 function addCategories() {
-    categoryList.push(addCategoryInput.value);
-    localStorage.setItem('categoryItems', JSON.stringify(categoryList));
-    categoryListEl.innerHTML = '';
-    showCategoryList();
-    addCategoryInput.value = '';
+    
+    let lowerCaseCat = categoryList.map (item => item.toLowerCase())
+    if(lowerCaseCat.includes(addCategoryInput.value.trim().toLowerCase())) {
+        alert('Category already exists');
+    } else {
+        categoryList.push(addCategoryInput.value);
+        localStorage.setItem('categoryItems', JSON.stringify(categoryList));
+        categoryListEl.innerHTML = '';
+        showCategoryList();
+        addCategoryInput.value = '';
+    }
+    
 }
 
 
@@ -202,7 +209,7 @@ timeInput.addEventListener('keyup', (e) => {
 addCategoryBtn.addEventListener('click', () => {
     addCategoryEl.classList.toggle('add');
     categoryEl.classList.toggle('hide');
-
+    addCategoryInput.focus();
     if(addCategoryEl.classList.contains('add')) {
         addCategoryBtn.innerText = 'Hide Category List';
         showCategoryList();
