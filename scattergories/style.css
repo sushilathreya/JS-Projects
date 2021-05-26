@@ -27,7 +27,7 @@ body {
     border: 2px solid #ff0099;
 }
 
-.letter-tag {
+.letter-tag, .time-tag {
     position: absolute;
     top: 10px;
     left: 20px;
@@ -38,15 +38,6 @@ body {
 
 .letter-container {
     border-bottom: none;
-}
-
-.time-tag {
-    position: absolute;
-    top: 10px;
-    left: 20px;
-    font-size: 18px;
-    font-weight: 400;
-    margin: 0;
 }
 
 .letter, .time {
@@ -81,7 +72,7 @@ body {
 }
 
 .time-container.edit .time {
-    /* display: none; */
+    display: none;
 }
 
 .time-container.edit .editContainer {
@@ -97,11 +88,11 @@ body {
 }
 
 .timeInput {
-    font-size: 150px;
+    font-size: 100px;
     width: 60%;
     text-align: center;
     border: 1px solid #ff0099;
-    background-color: #EDF1F2;
+    background-color: #E8F1F2;
     color: #ff0099;
     font-family: 'Varela Round', sans-serif;
     font-weight: 600;
@@ -124,6 +115,7 @@ body {
     transform: scale(1.05);
 }
 
+/* Remove up and down arrows on the input bar */
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
@@ -223,6 +215,10 @@ input[type=number] {
     font-size: 70px;
 }
 
+.play:focus, .restart:focus {
+    outline: 0;
+}
+
 .word-wrap {
     font-size: 25px;
     padding: 10px 15px;
@@ -232,13 +228,21 @@ input[type=number] {
 .category {
     margin: 0 10px;
     background-color: none;
-    background: linear-gradient(to left, #E8F1F2 50%,#ff0099 50%) right;
-    background-size: 200%;
-    transition: .3s ease-out;
+    /* background: linear-gradient(to left, #E8F1F2 50%,#ff0099 50%) right; */
+    background-color: #E8F1F2;
+    /* background-size: 200%; */
+    /* transition: .3s ease-out; */
+    -webkit-transition: background-color 200ms ease-in;
+    -ms-transition: background-color 200ms ease-in;
+    transition: background-color 200ms ease-in;
 }
 
 .category.paused {
-    background-position: left;
+    /* background-position: left; */
+    background-color: #ff0099;
+    /* -webkit-transition: background-color 200ms linear;
+    -ms-transition: background-color 200ms linear;
+    transition: background-color 200ms linear; */
     margin: 0 10px; 
 }
 
@@ -249,6 +253,12 @@ input[type=number] {
 .categories {
     height: 100%;
     overflow: auto;
+    display: inline-block;
+    transition: all 0.3ms ease-in;
+}
+
+.categories.hide {
+    display: none;
 }
 
 img {
@@ -256,4 +266,321 @@ img {
     width: 100px;
     top: 15px;
     left: 50px;
+}
+
+.add-category-container {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+    transition: all 0.3ms ease-in;
+    overflow: hidden;
+}
+
+.add-category-container.add {
+    display: flex;
+    flex-direction: column;
+}
+
+.add-category {
+    font-size: 25px;
+    margin: 0;
+    border: none;
+    color: #ff0099;
+    padding: 5px 15px;
+    background-color: #E8F1F2;
+}
+
+.add-category:focus {
+    outline: 0;
+}
+
+.category-list {
+    list-style-type: none;
+    font-size: 20px;
+    padding: 5px 15px;
+    overflow: auto;
+    margin: 0;
+}
+
+.category-list li {
+    margin-bottom: 5px;
+    margin-top: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.add-categories {
+    color: black;
+    cursor: pointer;
+    transition: color 0.2s ease-in;
+}
+
+.add-categories:hover {
+    color: #ff0099;
+}
+
+@media(max-width: 1322px) {
+    .letter {
+        font-size: 200px;
+    }
+    
+    .time {
+        font-size: 140px;
+    }
+
+    .timeInput {
+        width: 75%;
+        font-size: 100px;
+    }
+
+    .updateTime {
+        width: 75%;
+    }
+}
+
+@media(max-width: 1168px) {
+    .letter {
+        font-size: 180px;
+    }
+    
+    .time {
+        font-size: 120px;
+    }
+
+    .timeInput {
+        width: 80%;
+        font-size: 90px;
+    }
+
+    .updateTime {
+        width: 80%;
+    }
+}
+
+@media(max-width: 965px) {
+   
+   body {
+    padding: 80px 80px 50px 80px;
+   }
+
+   img {
+       width: 70px;
+   }
+
+    .letter {
+        font-size: 160px;
+    }
+    
+    .time {
+        font-size: 90px;
+    }
+
+    .timeInput {
+        width: 80%;
+        font-size: 75px;
+    }
+
+    .updateTime {
+        width: 80%;
+    }
+
+    .play, .restart {
+        font-size: 50px;
+    }
+
+    .play:hover, .restart:hover {
+        font-size: 55px;
+    }
+
+}
+
+@media(max-width: 840px) {
+    
+    body {
+        padding: 70px 60px 40px 60px;
+       }
+    
+       img {
+           width: 60px;
+       }
+
+    .letter {
+        font-size: 140px;
+    }
+    
+    .time {
+        font-size: 75px;
+    }
+
+    .timeInput {
+        width: 80%;
+        font-size: 65px;
+    }
+
+    .updateTime {
+        width: 80%;
+    }
+
+    .play, .restart {
+        font-size: 50px;
+    }
+
+    .play:hover, .restart:hover {
+        font-size: 55px;
+    }
+
+    .category-container, .number {
+        font-size: 15px;
+    }
+
+    .word-wrap {
+        font-size: 20px;
+    }
+}
+
+@media(max-width: 754px) {
+    
+    body {
+        padding: 60px 40px 30px 40px;
+       }
+    
+       img {
+           width: 50px;
+       }
+
+    .letter {
+        font-size: 140px;
+    }
+    
+    .letter {
+        font-size: 120px;
+    }
+    
+    .time {
+        font-size: 65px;
+    }
+
+    .timeInput {
+        width: 80%;
+        font-size: 55px;
+    }
+
+    .updateTime {
+        width: 80%;
+    }
+
+    .play, .restart {
+        font-size: 30px;
+    }
+
+    .play:hover, .restart:hover {
+        font-size: 35px;
+    }
+
+    .category-container, .number {
+        font-size: 12px;
+    }
+
+    .word-wrap, .add-category, .category-list {
+        font-size: 18px;
+    }
+}
+
+@media(max-width: 674px) {
+    .letter {
+        font-size: 100px;
+    }
+    
+    .time {
+        font-size: 50px;
+    }
+
+    .timeInput {
+        width: 80%;
+        font-size: 45px;
+    }
+
+    .updateTime {
+        width: 80%;
+    }
+
+    .play, .restart {
+        font-size: 25px;
+    }
+
+    .play:hover, .restart:hover {
+        font-size: 30px;
+    }
+
+    .category-container, .number, .minus, .plus {
+        font-size: 10px;
+    }
+
+    .word-wrap, .letter-tag, .time-tag, .edit-time, .random-letter, .add-category, .category-list {
+        font-size: 15px;
+    }
+
+    .edit-time, .random-letter {
+        right: 10px;
+    }
+
+    .letter-tag, .time-tag {
+        left: 10px;
+    }
+
+    .header {
+        padding: 5px 7px;
+    }
+}
+
+@media(max-width: 592px) {
+    .letter {
+        font-size: 80px;
+    }
+    
+    .time {
+        font-size: 40px;
+    }
+
+    .timeInput {
+        width: 80%;
+        font-size: 35px;
+    }
+
+    .updateTime {
+        width: 80%;
+        font-size: 12px;
+    }
+
+    .play, .restart {
+        font-size: 25px;
+    }
+
+    .play:hover, .restart:hover {
+        font-size: 30px;
+    }
+
+    .category-container, .number, .minus, .plus {
+        font-size: 8px;
+    }
+
+    .word-wrap, .time-tag, .letter-tag, .edit-time, .random-letter, .add-category, .category-list {
+        font-size: 12px;
+    }
+
+    .edit-time, .random-letter {
+        right: 5px;
+    }
+
+    .letter-tag, .time-tag {
+        left: 5px;
+    }
+
+    .header {
+        padding: 3px 5px;
+    }
 }

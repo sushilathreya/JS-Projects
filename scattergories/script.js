@@ -11,14 +11,16 @@ const letter = document.getElementById('letter');
 const editTimeEl = document.getElementById('time-container');
 const timeInput = document.getElementById('timeInput');
 const updateTimeBtn = document.getElementById('updateTime');
+const addCategoryBtn = document.getElementById('add-categories');
+const addCategoryEl = document.getElementById('add-category-container');
+const addCategoryInput = document.getElementById('add-category');
+const categoryListEl = document.getElementById('category-list');
 
 timeInput.value = '30';
 
 let categoryNumber = +noOfCategories.innerText;
 
-let categoryList = [
-    "Beers", "Boy's Name", "Girl's Name", "Dog Breed", "Pro Sports Team", "Cartoon characters", "Video game characters", "Move name", "Things you sit on/in", "Items of clothing", "Footwear", "Cryptocurrency", "Words related to money", "Names of candy", "Desserts", "Dishes", "Offensive word", "Tech companies", "Apps", "Entrepreneurs", "Cars", "Vehicles", "Animals", "Insects", "Mammals", "Vegetables", "Fruits", "Drinks", "Restaurant Names", "YouTubers"
-];
+let categoryList = getCategories();
 
 const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
@@ -26,7 +28,8 @@ let seconds = +time.innerText;
 let secondsRemaining;
 
 function createList() {
-    const shuffled = categoryList.sort(() => 0.5 - Math.random());
+    let listCopy = categoryList;
+    const shuffled = listCopy.sort(() => 0.5 - Math.random());
     let selected = shuffled.slice(0, categoryNumber);
     for(let i=0; i<categoryNumber; i++) {
         let category = document.createElement('div');
@@ -52,6 +55,13 @@ function generateRandomLetter() {
 
 startGame();
 
+function getCategories() {
+    const categoryItems = JSON.parse(localStorage.getItem('categoryItems'));
+    return categoryItems === null ? [
+        "Beers", "Boy's names", "Girl's names", "Dog breeds", "Pro sports teams", "Cartoon characters", "Video game characters", "Movie name", "Things you sit on/in", "Items of clothing", "Footwear", "Cryptocurrency", "Words related to money", "Names of candy", "Desserts", "Dishes", "Offensive words", "Tech companies", "Apps", "Entrepreneurs", "Cars", "Vehicles", "Animals", "Insects", "Mammals", "Vegetables", "Fruits", "Drinks", "Restaurant Names", "YouTubers"
+    ] : categoryItems;
+}
+
 
 function play() {
     const categories = document.querySelectorAll('#category');
@@ -64,10 +74,20 @@ function play() {
     if(!playBtn.classList.contains('pause')) {
         startTimer();
         playBtn.innerHTML = '<i class = "fas fa-pause"></i>';
+        minusBtn.style.visibility = 'hidden';
+        plusBtn.style.visibility = 'hidden';
+        randomLetterBtn.style.visibility = 'hidden';
+        editTimeBtn.style.visibility = 'hidden';
+        addCategoryBtn.style.visibility = 'hidden';
     }
 
     if(playBtn.classList.contains('pause')) {
-        pauseTimer(); 
+        pauseTimer();
+        minusBtn.style.visibility = 'visible';
+        plusBtn.style.visibility = 'visible';
+        randomLetterBtn.style.visibility = 'visible';
+        editTimeBtn.style.visibility = 'visible';
+        addCategoryBtn.style.visibility = 'visible';
     }
     
 }
@@ -98,6 +118,40 @@ function restartGame() {
     startGame();
 }
 
+function showCategoryList() {
+    
+    for(let j = categoryList.length - 1; j >= 0; j--) {
+            
+        let listItem = document.createElement('li');
+        listItem.innerHTML = `
+            <span>${categoryList[j]}</span>
+            <button id = "delete-btn" class = "delete-btn" onclick = "removeItem(this.parentElement, 'categoryList[j]')">
+                <i class = "fas fa-trash-alt"></i>
+            </button>
+        `;
+
+        categoryListEl.appendChild(listItem);
+    }
+    
+    
+}
+
+function removeItem(item, value) {
+    item.remove();
+    categoryList.splice(categoryList.indexOf(value), 1);
+    localStorage.setItem('categoryItems', JSON.stringify(categoryList));
+}
+
+
+
+function addCategories() {
+    categoryList.push(addCategoryInput.value);
+    localStorage.setItem('categoryItems', JSON.stringify(categoryList));
+    categoryListEl.innerHTML = '';
+    showCategoryList();
+    addCategoryInput.value = '';
+}
+
 
 function updateTime() {
     seconds = +timeInput.value;
@@ -114,6 +168,8 @@ plusBtn.addEventListener('click', () => {
         noOfCategories.innerText = categoryNumber;
         categoryEl.innerHTML = '';
         createList();
+        seconds = +timeInput.value;
+        time.innerText = seconds;
     }
     
 });
@@ -124,6 +180,8 @@ minusBtn.addEventListener('click', () => {
         noOfCategories.innerText = categoryNumber;
         categoryEl.innerHTML = '';
         createList();
+        seconds = +timeInput.value;
+        time.innerText = seconds;
     }
     
 });
@@ -139,4 +197,22 @@ timeInput.addEventListener('keyup', (e) => {
     if(e.key == 'Enter') {
         updateTime();
     }
-})
+});
+
+addCategoryBtn.addEventListener('click', () => {
+    addCategoryEl.classList.toggle('add');
+    categoryEl.classList.toggle('hide');
+
+    if(addCategoryEl.classList.contains('add')) {
+        addCategoryBtn.innerText = 'Hide Category List';
+        showCategoryList();
+    } else {
+        addCategoryBtn.innerText = 'Add a category';
+    }
+});
+
+addCategoryInput.addEventListener('keyup', (e) => {
+    if(e.key == 'Enter') {
+        addCategories();
+    }
+});
