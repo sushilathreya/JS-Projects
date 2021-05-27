@@ -72,6 +72,9 @@ function play() {
     playBtn.classList.toggle('pause');
     
     if(!playBtn.classList.contains('pause')) {
+        if(seconds<=0) {
+            seconds = timeInput.value;
+        }
         startTimer();
         playBtn.innerHTML = '<i class = "fas fa-pause"></i>';
         minusBtn.style.visibility = 'hidden';
@@ -79,6 +82,7 @@ function play() {
         randomLetterBtn.style.visibility = 'hidden';
         editTimeBtn.style.visibility = 'hidden';
         addCategoryBtn.style.visibility = 'hidden';
+        
     }
 
     if(playBtn.classList.contains('pause')) {
@@ -97,8 +101,9 @@ function startTimer() {
         seconds--;
         time.innerText = seconds;
 
-        if(seconds<=0) {
+        if(seconds==0) {
             clearInterval(secondsRemaining);
+            alert('Your time is up!');
         }
     }, 1000);   
 }

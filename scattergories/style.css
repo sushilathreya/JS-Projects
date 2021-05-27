@@ -597,3 +597,51 @@ img {
         padding: 3px 5px;
     }
 }
+
+@media(max-width: 500px) {
+    .letter {
+        font-size: 75px;
+    }
+    
+    .time {
+        font-size: 35px;
+    }
+
+    .timeInput {
+        width: 80%;
+        font-size: 30px;
+    }
+
+    .updateTime {
+        width: 80%;
+        font-size: 10px;
+    }
+
+    .play, .restart {
+        font-size: 20px;
+    }
+
+    .play:hover, .restart:hover {
+        font-size: 23px;
+    }
+
+    .category-container, .number, .minus, .plus {
+        font-size: 8px;
+    }
+
+    .word-wrap, .time-tag, .letter-tag, .edit-time, .random-letter, .add-category, .category-list {
+        font-size: 12px;
+    }
+
+    .edit-time, .random-letter {
+        right: 5px;
+    }
+
+    .letter-tag, .time-tag {
+        left: 5px;
+    }
+
+    .header {
+        padding: 3px 5px;
+    }
+}
