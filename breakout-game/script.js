@@ -181,7 +181,7 @@ function moveBall() {
 function increaseScore() {
     score++;
 
-    if(score % (brickRowCount*brickColCount === 0)){
+    if(score % (brickRowCount*brickColCount) == 0){
         showAllBricks();
     }
 }
@@ -246,11 +246,11 @@ function setHighScore(score, difficulty) {
 function getHighScore(score, difficulty) {
     let highScore;
     if(+difficulty==1){
-        highScore = JSON.parse(localStorage.getItem("HighscoreEasy"));
+        highScore = JSON.parse(localStorage.getItem("HighscoreEasy")) == null? 0 : JSON.parse(localStorage.getItem("HighscoreEasy"));
     } else if (+difficulty==2) {
-        highScore = JSON.parse(localStorage.getItem("HighscoreMed"))
+        highScore = JSON.parse(localStorage.getItem("HighscoreMed")) == null? 0 : JSON.parse(localStorage.getItem("HighscoreMed"));
     } else {
-        highScore = JSON.parse(localStorage.getItem("HighscoreHard"))
+        highScore = JSON.parse(localStorage.getItem("HighscoreHard")) == null? 0 : JSON.parse(localStorage.getItem("HighscoreHard"));
     }
     return highScore;
 }
