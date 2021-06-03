@@ -77,21 +77,12 @@ function play() {
         }
         startTimer();
         playBtn.innerHTML = '<i class = "fas fa-pause"></i>';
-        minusBtn.style.visibility = 'hidden';
-        plusBtn.style.visibility = 'hidden';
-        randomLetterBtn.style.visibility = 'hidden';
-        editTimeBtn.style.visibility = 'hidden';
-        addCategoryBtn.style.visibility = 'hidden';
-        
+        hideButtons();        
     }
 
     if(playBtn.classList.contains('pause')) {
         pauseTimer();
-        minusBtn.style.visibility = 'visible';
-        plusBtn.style.visibility = 'visible';
-        randomLetterBtn.style.visibility = 'visible';
-        editTimeBtn.style.visibility = 'visible';
-        addCategoryBtn.style.visibility = 'visible';
+        showButtons();
     }
     
 }
@@ -114,6 +105,22 @@ function pauseTimer() {
 }
 
 
+function showButtons() {
+    minusBtn.style.visibility = 'visible';
+    plusBtn.style.visibility = 'visible';
+    randomLetterBtn.style.visibility = 'visible';
+    editTimeBtn.style.visibility = 'visible';
+    addCategoryBtn.style.visibility = 'visible';
+}
+
+function hideButtons() {
+    minusBtn.style.visibility = 'hidden';
+    plusBtn.style.visibility = 'hidden';
+    randomLetterBtn.style.visibility = 'hidden';
+    editTimeBtn.style.visibility = 'hidden';
+    addCategoryBtn.style.visibility = 'hidden';
+}
+
 function restartGame() {
     categoryEl.innerHTML = '';
     seconds = timeInput.value == '0'? 30 : +timeInput.value;
@@ -121,16 +128,17 @@ function restartGame() {
     playBtn.className = 'play pause';
     pauseTimer();
     startGame();
+    showButtons();
 }
 
 function showCategoryList() {
-    
+    categoryListEl.innerHTML = '';
     for(let j = categoryList.length - 1; j >= 0; j--) {
             
         let listItem = document.createElement('li');
         listItem.innerHTML = `
             <span>${categoryList[j]}</span>
-            <button id = "delete-btn" class = "delete-btn" onclick = "removeItem(this.parentElement, 'categoryList[j]')">
+            <button id = "delete-btn" class = "delete-btn" onclick = "removeItem(this.parentElement, categoryList[${j}])">
                 <i class = "fas fa-trash"></i>
             </button>
         `;
@@ -144,6 +152,7 @@ function showCategoryList() {
 function removeItem(item, value) {
     item.remove();
     categoryList.splice(categoryList.indexOf(value), 1);
+    console.log(value);
     localStorage.setItem('categoryItems', JSON.stringify(categoryList));
 }
 
