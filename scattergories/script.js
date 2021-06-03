@@ -58,7 +58,7 @@ startGame();
 function getCategories() {
     const categoryItems = JSON.parse(localStorage.getItem('categoryItems'));
     return categoryItems === null ? [
-        "Beers", "Boy's names", "Girl's names", "Dog breeds", "Pro sports teams", "Cartoon characters", "Video game characters", "Movie names", "Things you sit on/in", "Items of clothing", "Footwear", "Cryptocurrency", "Words related to money", "Names of candy", "Desserts", "Dishes", "Offensive words", "Tech companies", "Apps", "Entrepreneurs", "Cars", "Vehicles", "Animals", "Insects", "Mammals", "Vegetables", "Fruits", "Drinks", "Restaurant Names", "YouTubers"
+        "Beers", "Boy's names", "Girl's names", "Dog breeds", "Pro sports teams", "Cartoon characters", "Sportspersons", "Movie names", "Things you sit on/in", "Items of clothing", "Footwear", "Cryptocurrency", "Words related to money", "Capitals", "Desserts", "Dishes", "Offensive words", "Tech companies", "Apps", "Entrepreneurs", "Cars", "Vehicles", "Animals", "Insects", "Mammals", "Vegetables", "Fruits", "Drinks", "Restaurant Names", "YouTubers", "Countries"
     ] : categoryItems;
 }
 
